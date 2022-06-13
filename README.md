@@ -183,7 +183,7 @@ for an example
 ```
 goal wallet new grandwallet -d genesisfiles/testnet
 ```
-2. then the terminal or system will require to input a password that will be used for the wallet, **from the github repo the password that being used is `grandshake1` all lower case** **If the password is different, the password in the _expectFile.exp_ **
+2. then the terminal or system will require to input a password that will be used for the wallet, **If the password is different, the password in the _expectFile.exp_ **
 
 ## Creating two accounts (Primary Account and Secondary account)
 1. To create an account, type the following code:
@@ -231,52 +231,14 @@ goal asset create --creator <primary account address that just being created> --
 # AFTER THE SERVER RUNNING AND SYNCED, THE WALLET AND ACCOUNTS ARE CREATED, THE ASSET HAS BEEN CREATED AND THE SECONDARY ACCOUNT HAS BEEN OPTED-IN TO THE ASSET, THE SYSTEM HAS BEEN COMPLETE TO RUN THE CODE/SOLUTION FROM THE APEX TEAM FROM THE GITHUB REPO
 
 # Code/Solution
+## ALL THE CODE THAT NEEDS TO BE CHANGED OR ANYTHING NEEDS TO BE CHANGE
 - **The folder name and file name has to be exactly the same as the repo, if there are any changes to the file name or folder name, some changes in the code needs to be done**
-- **The Address for the primary Account (the creator of the asset) and the Secondary Account needs to be inputed in the _makeTransaction.sh_ file from the github
+- **The Address for the primary Account (the creator of the asset) and the Secondary Account needs to be inputed in the _makeTransaction.sh_ file from the github**
+- **the wallet name and the wallet password need to be inputted in the _expectFile.exp_ file, example `<wallet name>` change into `grandwallet`**
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Process Automation
+To process the code, just type the follwing code:
+```
+nohup bash fireProcess.sh
+```
+**the current _fireProcess.sh_ or the process will be running every 10 minutes to check if there are any transactions needed to be done. this can be done by changing the sleep timer in _fireProcess.sh_ file**
