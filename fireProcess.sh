@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# variable for infinite loop
 noEnd=1
 
 while [ $noEnd -gt 0 ]
