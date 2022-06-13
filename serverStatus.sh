@@ -1,7 +1,8 @@
 #!/bin/bash
 
+# uncomment one of these command
 # this is for checking the status for testnet
-goal node status -d ../testnet
+#goal node status -d ../testnet
 
 # this is for checking the status for betanet
 #goal node status -d ../betanet
