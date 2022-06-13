@@ -5,7 +5,7 @@ set count [lindex $argv 0];
 set times 0;
 spawn bash /root/node/genesisfiles/files/makeTransaction.sh
 while {$count > 0} {
-    expect "Please enter the password for wallet 'grandshake': " {send -- "grandshake1\r"}
+    expect "Please enter the password for wallet '<wallet name>': " {send -- "<wallet password>\r"}
     set count [expr $count-1];
 }
 expect eof
