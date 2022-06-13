@@ -14,6 +14,8 @@ Grandshake Token Skills Project with Team APEX
 # Installing and running the Algorand Server (process takes up to ~20-50 minutes)
 To have a better understanding of how to run a node, click the link and go to 'Installation with updater script' [Algorand - Install Node](https://developer.algorand.org/docs/run-a-node/setup/install/#installation-with-the-updater-script)
 follow the steps down below to install and run the node for Algorand
+### The Server connection to Algorand can be check when the fast catchup has been done and using `goal node status -d genesisfiles/testnet` and see the `Sync Time` is 0.0
+
 ## For Mac
 ### Verified on OSX v10.13.4 (High Sierra) and 10.15.7 (Catalina).
 - Create a folder to hold the install package and files.
@@ -168,6 +170,7 @@ Add a line that looks like this (run update.sh every hour, on the half-hour, of 
 30 * * * * /home/user/node/update.sh -d /home/user/node/data >/home/user/node/update.log 2>&1
 ```
 
+# Creating a wallet and account (
 
 # Code
 The folder name and file name has to be exactly the same as the repo, if there are any changes to the file name or folder name, some changes in the code needs to be done
