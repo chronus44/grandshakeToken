@@ -3,7 +3,6 @@
 # this code is to set how many iteration of checking to prompt the password
 set count [lindex $argv 0]; 
 
-# create infinite loop
 set times 0;
 spawn bash /root/node/genesisfiles/files/makeTransaction.sh
 while {$count > 0} {
