@@ -243,3 +243,4 @@ To process the code, just type the follwing code:
 nohup bash fireProcess.sh
 ```
 **the current _fireProcess.sh_ or the process will be running every 10 minutes to check if there are any transactions needed to be done. this can be done by changing the sleep timer in _fireProcess.sh_ file**
+**Record the _JOB PID_ for any future command if needed
