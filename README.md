@@ -228,10 +228,11 @@ goal asset create --creator <primary account address that just being created> --
 19. Go back to the EC2 Instance then type `goal account list -d genesisfiles/testnet`
 20. The secondary account balance will have 0.001 algo balance less then the previous balance
 
+# AFTER THE SERVER RUNNING AND SYNCED, THE WALLET AND ACCOUNTS ARE CREATED, THE ASSET HAS BEEN CREATED AND THE SECONDARY ACCOUNT HAS BEEN OPTED-IN TO THE ASSET, THE SYSTEM HAS BEEN COMPLETE TO RUN THE CODE/SOLUTION FROM THE APEX TEAM FROM THE GITHUB REPO
 
-
-# Code
-The folder name and file name has to be exactly the same as the repo, if there are any changes to the file name or folder name, some changes in the code needs to be done
+# Code/Solution
+- **The folder name and file name has to be exactly the same as the repo, if there are any changes to the file name or folder name, some changes in the code needs to be done**
+- **The Address for the primary Account (the creator of the asset) and the Secondary Account needs to be inputed in the _makeTransaction.sh_ file from the github
 
 
 
