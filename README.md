@@ -170,7 +170,8 @@ Add a line that looks like this (run update.sh every hour, on the half-hour, of 
 30 * * * * /home/user/node/update.sh -d /home/user/node/data >/home/user/node/update.log 2>&1
 ```
 
-# Creating a wallet and account (
+# Creating a wallet and account (This steps only needs to be done once in the beginning of the process)
+
 
 # Code
 The folder name and file name has to be exactly the same as the repo, if there are any changes to the file name or folder name, some changes in the code needs to be done
