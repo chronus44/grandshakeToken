@@ -17,7 +17,7 @@ do
     # code to make a transaction
     echo "Transaction Start"
 
-    goal asset send -a $amount --assetid 91537231 -f KCZFQBIVYLMEZ6QJ4AHXK43JRKQSUZF3PRGYXQNGQUZYBGNQUJGLIIF2IA -t PICMPEG3HR6PWNT3OC46GANGDJVBOXCFZQ5OJ2DHVZOB4DJQ3UI332M6SY --creator KCZFQBIVYLMEZ6QJ4AHXK43JRKQSUZF3PRGYXQNGQUZYBGNQUJGLIIF2IA --note ENROLLMENTID-$enrollID/AMOUNTBEINGTRANSFERRED-$amount/UNIQUEID-$uniqueID -d /root/node/genesisfiles/testnet | tee gettingTxid.txt
+    goal asset send -a $amount --assetid 91537231 -f <primary account or asset creator> -t <secondary account> --creator <primary account or asset creator> --note ENROLLMENTID-$enrollID/AMOUNTBEINGTRANSFERRED-$amount/UNIQUEID-$uniqueID -d /root/node/genesisfiles/testnet | tee gettingTxid.txt
 
     grep txid gettingTxid.txt > txid.txt
     bash /root/node/genesisfiles/files/takingTxidOnly.sh
