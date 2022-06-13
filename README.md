@@ -171,8 +171,111 @@ Add a line that looks like this (run update.sh every hour, on the half-hour, of 
 ```
 
 # Creating a wallet and account (This steps only needs to be done once in the beginning of the process)
+using the CLI to interacting with Algorand from this link [Goal](https://developer.algorand.org/docs/clis/goal/goal/#goal)
+### REMEMBER TO SPECIFY THE SERVER USING `-d` IF WE ARE RUNNING TESTNET OR BETANET
+
+## Creating a Wallet
+1. To create a wallet type the following code:
+```
+goal wallet new [wallet name] [flags]
+```
+for an example
+```
+goal wallet new grandwallet -d genesisfiles/testnet
+```
+2. then the terminal or system will require to input a password that will be used for the wallet, **from the github repo the password that being used is `grandshake1` all lower case** **If the password is different, the password in the _expectFile.exp_ **
+
+## Creating two accounts (Primary Account and Secondary account)
+1. To create an account, type the following code:
+```
+goal account new [flags]
+```
+for an example **the name of the following account is primaryAccount, to create the second account, change the _primaryAccount_ to _secondaryAccount_ or change into any names you like**
+```
+goal account new primaryAccount -d genesisfiles/testnet
+```
+2. then the terminal or system will require the password that was being created from wallet creation just now
+
+3. to create the second account, just redo the steps all over again with different name
+
+# Creating the Grandshake Token Skills or creating an asset
+**BEFORE CREATING AN ASSET , THE TWO ACCOUNTS HAS TO BE FUNDED BEFORE HAND, IF IT IS USING TESTNET, GO TO TESTNET FAUCET [Algorand Testnet Dispenser](https://dispenser.testnet.aws.algodev.network/), IF USING THE MAINNET, THEN NEED TO BUY ALGO BALANCE FROM THE SERVER**
+
+- To create the Grandshake Token skills, type this: (the total down below is the 1 Billion)
+```
+goal asset create --creator <primary account address that just being created> --total 1000000000 --unitname <unit-name> --assetid <asset-ID> --decimals 0   -d genesisfiles/testnet
+```
+
+# Opt-in the secondary account to the asset using the [MyAlgo Wallet](https://wallet.myalgo.com/home)
+1. From the home page, click Access now button
+2. If this is the first time accessing the MyAlgo Wallet, then it will prompt to create password, enter the password
+3. Go back to the EC2 instance terminal and type `goal account list -d genesisfiles/testnet` then enter the password
+4. Record the two address from the account and the asset id
+5. Then type `goal account export -a <account address> -d genesisfiles/testnet` **DO THIS FOR BOTH ACCOUNTS**
+6. The terminal will give 25 mnemonic words, Record the mneomonic words **DO NOT SHARE THE MNEMONIC WORDS TO ANYONE AND KEEP IT AS SAFE AS POSSIBLE, DO NOT LOSE IT**
+7. Go back to MyAlgo Wallet website, then click add account button
+8. Click 'Import Phrase'
+9. Set the account name
+10. Enter the 25 Mnemonic Words
+11. Enter the password
+12. Do Steps 7-11 for the secondary account as well
+13. Then click the secondary account from the website
+14. Click on "Add Asset"
+15. Then find the Grandshake asset using the Asset ID or the Asset Name
+16. Click on the asset
+17. then enter the Password
+18. It will takes few seconds
+19. Go back to the EC2 Instance then type `goal account list -d genesisfiles/testnet`
+20. The secondary account balance will have 0.001 algo balance less then the previous balance
+
 
 
 # Code
 The folder name and file name has to be exactly the same as the repo, if there are any changes to the file name or folder name, some changes in the code needs to be done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
