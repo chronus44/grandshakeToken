@@ -270,10 +270,9 @@ Consider this file as the reason why the extractor script is able to read inform
 So, overall just make sure the extractor script, timekeeper.txt and the json file exist in the same folder as the makeTransaction.sh file. 
 
 ## How to automate this script
-In the cron file, just add the below entry 
+In the cron file, just add the below entry, ALso if you aren;t sure about what cron is, its worth taking a look at this(https://ostechnix.com/a-beginners-guide-to-cron-jobs/) before you do anything below 
 
 ## Process Automation
-To process the code, just type the follwing code:
 ```
 */5 * * * * python3 "folder where the extractor script exists minus these quotes thingy"
 ```
@@ -282,4 +281,7 @@ exmaple -
 ```
 */5 * * * * python3 /bin/essentials/extractor_main/extractor_main_v2.py
 ```
+
+So now, this should enable you to 1) Automate the extractor script 2) Set it up on your personalised server 3) Understand what it does
+For more hints, Feel free to refer the script as it should be easy enough to modify as per your requirements or needs. Thanks!
 
