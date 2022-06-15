@@ -2,7 +2,7 @@
 Grandshake Token Skills Project with Team APEX
 
 # Project Version-1.0.0
-## Date Edited -- 13 June 2022
+## Date Edited -- 16 June 2022
 
 # Prerequisite
 - AWS Amazon EC2 Instance is running with Linux
@@ -11,6 +11,14 @@ Grandshake Token Skills Project with Team APEX
 # Install library and dependencies
 - update the EC2 instance if required `sudo yum update`
 - install 'Expect' library using `sudo yum install expect`
+
+# Dependency Packages for extractor script and importer feature. -NN
+- It is crucial that you first download these libraries, You should be able to download all these libraries on your server, you need to install the libraries in order to make the extractor/importer stuff work.
+- Usually python3 should comes preinstalled on your Unix server, for the other packages something like this should work (e.g. sudo apt install python3-pip)
+    - Python3 
+    - pip3
+    - gspread 
+    - oauthent
 
 # Installing and running the Algorand Server (process takes up to ~20-50 minutes)
 To have a better understanding of how to run a node, click the link and go to 'Installation with updater script' [Algorand - Install Node](https://developer.algorand.org/docs/run-a-node/setup/install/#installation-with-the-updater-script)
@@ -255,22 +263,24 @@ Before we go any further, Please note there are some dependencies which need to 
 - Long Answer? Our solution initiates when it finds some records from Grandshake's google sheet DB worth creating a transaction assignment request for. What does that mean? It means the extractor script will run every 30 mins(this value can be modified - look below for the automation feature for this script) but when the extractor script runs it makes a check for each record in that google sheet and does a comparison of the time for that value from the datetime field for every record with the last time this script was run. This comparison then has two outcomes, Outcome 1 - The script finds records worth extracting(when the datetime comparison proves that the record's datetime is greater than the datetime for when the script last ran). Outcome 2 - It finds no records worth extracting and does nothing (when the datetime of the records is less than the datetime of when the script last ran).
 
 - What if the extractor actually finds records worth extracting?
-- In that case, the extractor will just select that rows enrollmentID and combine that piece of information with the token value that needs to be assigned for that enrollmentID(e.g. give this enrollmentID a token worth 5 as its value) it then combines this with another random job id and then these threee elements are added to a file which becomes the transaction assignment request file.
+- In that case, the extractor will just select that rows enrollmentID and combine that piece of information with the token value that needs to be assigned for that enrollmentID(e.g. give this enrollmentID a token worth 5 as its value) it then combines this with another random job id and then these threee elements are added to a file which becomes the transaction assignment request file(txn_req_job_4134.txt).
 
+- The variable Output inside that txn_req_job_{job_id}.txt file should something like this -> "enrollmentId-tokenValue-randomJobID"
+- This output then serves to be read by the module explained before this extractor scripts section.
 
 ## How can it be set up?
 Just put the extractor script in the same directory as the aforementioned makeTransaction.sh script. Make sure the timekeeper.txt and the "test-project-1-349705-bf9bfec03f61.json" file exists in the same folder as this script.
 
-what is that timekeeper.txt file?
-This basically is how the script keeps track of when it was last run. Values from this are lifted when the script wants to make datetime comparisons.
+what is this timekeeper.txt file?
+This basically is how the script keeps track of when it was last run. Values from this are lifted when the script wants to make datetime comparisons.(MM-DD-YYYY HH:MM:SS). Also in general please note any datetime activity associated with importer/extractor feature exists in this format(MM-DD-YYYY HH:MM:SS)
 
-What is the test-project-1-349705-bf9bfec03f61.json file?
+What is this test-project-1-349705-bf9bfec03f61.json file?
 Consider this file as the reason why the extractor script is able to read information from the Grandshake Google Sheet. If you want to create your own, you could just refer this - https://cloud.google.com/iam/docs/creating-managing-service-accounts
 
-So, overall just make sure the extractor script, timekeeper.txt and the json file exist in the same folder as the makeTransaction.sh file. 
+So, overall just make sure the extractor script, timekeeper.txt and the json file co-exist within the same folder as the makeTransaction.sh file. 
 
 ## How to automate this script
-In the cron file, just add the below entry, ALso if you aren;t sure about what cron is, its worth taking a look at this(https://ostechnix.com/a-beginners-guide-to-cron-jobs/) before you do anything below 
+In the cron file, just add the below entry, Also if you aren't sure about what cron is, its worth taking a look at this(https://ostechnix.com/a-beginners-guide-to-cron-jobs/) before you do anything below 
 
 ## Process Automation
 ```
@@ -285,3 +295,4 @@ exmaple -
 So now, this should enable you to 1) Automate the extractor script 2) Set it up on your personalised server 3) Understand what it does
 For more hints, Feel free to refer the script as it should be easy enough to modify as per your requirements or needs. Thanks!
 
+#### This concludes the section on the extractor script.
