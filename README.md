@@ -287,7 +287,7 @@ In the cron file, just add the below entry, Also if you aren't sure about what c
 */5 * * * * python3 "folder where the extractor script exists minus these quotes thingy"
 ```
 
-exmaple - 
+example - 
 ```
 */5 * * * * python3 /bin/essentials/extractor_main/extractor_main_v2.py
 ```
