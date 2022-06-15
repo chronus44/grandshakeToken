@@ -244,3 +244,42 @@ nohup bash fireProcess.sh
 ```
 **the current _fireProcess.sh_ or the process will be running every 10 minutes to check if there are any transactions needed to be done. this can be done by changing the sleep timer in _fireProcess.sh_ file**
 **Record the _JOB PID_ for any future command if needed
+
+# A Guide to The Extractor Script - NN
+## In this section, I discuss and elaborate on 1) what is the extractor script 2) what does it do 3) How can it be set up
+
+Before we go any further, Please note there are some dependencies which need to be taken care off. So please make sure you cover that before you proceed with anything else in this section
+
+## What is the Extractor Script and what is it programmed to do?
+- Short Answer? The Extractor Script just extracts the values from Grandshake's google sheet DB and creates transaction assignment request files for the module mentioned above to fire into the Algorand Network. It uses the google sheets API mechanism to reach the sheet.
+- Long Answer? Our solution initiates when it finds some records from Grandshake's google sheet DB worth creating a transaction assignment request for. What does that mean? It means the extractor script will run every 30 mins(this value can be modified - look below for the automation feature for this script) but when the extractor script runs it makes a check for each record in that google sheet and does a comparison of the time for that value from the datetime field for every record with the last time this script was run. This comparison then has two outcomes, Outcome 1 - The script finds records worth extracting(when the datetime comparison proves that the record's datetime is greater than the datetime for when the script last ran). Outcome 2 - It finds no records worth extracting and does nothing (when the datetime of the records is less than the datetime of when the script last ran).
+
+- What if the extractor actually finds records worth extracting?
+- In that case, the extractor will just select that rows enrollmentID and combine that piece of information with the token value that needs to be assigned for that enrollmentID(e.g. give this enrollmentID a token worth 5 as its value) it then combines this with another random job id and then these threee elements are added to a file which becomes the transaction assignment request file.
+
+
+## How can it be set up?
+Just put the extractor script in the same directory as the aforementioned makeTransaction.sh script. Make sure the timekeeper.txt and the "test-project-1-349705-bf9bfec03f61.json" file exists in the same folder as this script.
+
+what is that timekeeper.txt file?
+This basically is how the script keeps track of when it was last run. Values from this are lifted when the script wants to make datetime comparisons.
+
+What is the test-project-1-349705-bf9bfec03f61.json file?
+Consider this file as the reason why the extractor script is able to read information from the Grandshake Google Sheet. If you want to create your own, you could just refer this - https://cloud.google.com/iam/docs/creating-managing-service-accounts
+
+So, overall just make sure the extractor script, timekeeper.txt and the json file exist in the same folder as the makeTransaction.sh file. 
+
+## How to automate this script
+In the cron file, just add the below entry 
+
+## Process Automation
+To process the code, just type the follwing code:
+```
+*/5 * * * * python3 "folder where the extractor script exists minus these quotes thingy"
+```
+
+exmaple - 
+```
+*/5 * * * * python3 /bin/essentials/extractor_main/extractor_main_v2.py
+```
+
