@@ -296,3 +296,6 @@ So now, this should enable you to 1) Automate the extractor script 2) Set it up 
 For more hints, Feel free to refer the script as it should be easy enough to modify as per your requirements or needs. Thanks!
 
 #### This concludes the section on the extractor script.
+
+# A guide to an importer script
+
