@@ -30,6 +30,7 @@ output = tx_file.readlines()
 tx_list = []
 tx_dict_list = []
 
+## This part loops over every tx IDs in a tx_file and extracts all the transaction details for each ID and filters the relevant ones
 for i in output:
     tx_list.append(i.replace('\n', ''))
 
@@ -37,25 +38,38 @@ for i in tx_list:
     url = base_url.format(i=i)
     response = requests.get(url).text
     json_response = json.loads(response)
-
+    
+    # Transaction amount
     tx_amount = json_response['transaction']['asset-transfer-transaction']['amount']
+    
+    # Asset ID
     asset_id = json_response['transaction']['asset-transfer-transaction']['asset-id']
+    
+    # Reciever ID
     rx_id = json_response['transaction']['asset-transfer-transaction']['receiver']
+    
+    # Sender ID
     snd_id = json_response['transaction']['sender']
+    
+    # Note containing enrollment ID, Uniqu ID and amount to transfer
     note = json_response['transaction']['note']
-
+    
+    # Converting the base64 format of note to ascii format
     base64_string = str(note)
     base64_bytes = base64_string.encode("ascii")
     note = base64.b64decode(base64_bytes)
     Note = note.decode("ascii")
     notes = []
-
+    
+    # Extracting Enrollment ID, Amount to transfer and Unique ID 
     for item in Note.split("/"):
         for element in item.split("-"):
             notes.append(element)
             Enrollment_ID = notes[1]
     Amount_to_transfer = notes[3]
     Unique_ID = notes[5]
+    
+    # Creating an empty dictionary to store all the relevant transaction details
     Tx_dict = dict()
     Tx_dict["Transaction ID"] = i
     Tx_dict["Sender address"] = snd_id
@@ -65,7 +79,8 @@ for i in tx_list:
     Tx_dict["Enrollment ID"] = Enrollment_ID
     Tx_dict["Amount to be transferred"] = Amount_to_transfer
     Tx_dict["Unique ID"] = Unique_ID
-
+    
+    # Based on Enrollment ID for a given google sheet, displaying the corresponding transaction ID along with the token amount
     txn_id = Tx_dict["Transaction ID"]
     enrollId = Tx_dict["Enrollment ID"]
     tokenAmount = Tx_dict["Token amount"]
